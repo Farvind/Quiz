@@ -2,7 +2,7 @@ Quiz Creator and Game
 Unity VErsion: 2021.3.16f1
 QuizCreator Scene:
 - Add Questions.
-- Add Answers [Maximum 4 answers] aloneg with the option of Right Answer.
+- Add Answers [Maximum 4 answers] along with the option of Right Answer.
 - Dynamic UI for selection of the saved Questions.
   ![qc1](https://github.com/Farvind/Quiz/assets/85187260/14d89d10-2aaf-4a79-84a4-beb5a00e31e0)
 ![qc2](https://github.com/Farvind/Quiz/assets/85187260/dd647411-a893-4408-9fba-15238d066d27)
