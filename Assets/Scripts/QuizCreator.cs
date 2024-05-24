@@ -23,18 +23,18 @@ public class Quiz
 
 public class QuizCreator : MonoBehaviour
 {
-    public TMP_InputField questionInputField;
-    public List<TMP_InputField> answerInputFields;
-    public List<GameObject> answerInputFieldsObject;
-    public List<Toggle> answerToggles;
-    public Button saveButton;
-    public Button deleteButton;
-    public TextMeshProUGUI QuestionIndicator;
-    public Button addQuestionButton;
-    public GameObject buttonPrefab;
-    public Transform content;
-    public GameObject questionPanel;
-    public TMP_InputField questionText;
+    [SerializeField] TMP_InputField questionInputField;
+    [SerializeField] List<TMP_InputField> answerInputFields;
+    [SerializeField] List<GameObject> answerInputFieldsObject;
+    [SerializeField] List<Toggle> answerToggles;
+    [SerializeField] Button saveButton;
+    [SerializeField] Button deleteButton;
+    [SerializeField] TextMeshProUGUI QuestionIndicator;
+    [SerializeField] Button addQuestionButton;
+    [SerializeField] GameObject buttonPrefab;
+    [SerializeField] Transform content;
+    [SerializeField] GameObject questionPanel;
+    [SerializeField] TMP_InputField questionText;
 
     private Quiz quiz = new Quiz();
     private int currentQuestionIndex = -1;
@@ -60,7 +60,7 @@ public class QuizCreator : MonoBehaviour
         
     }
 
-    void SaveQuestion()
+    public void SaveQuestion()
     {
         if (string.IsNullOrEmpty(questionInputField.text))
         {
@@ -179,7 +179,7 @@ public class QuizCreator : MonoBehaviour
         }
     }
 
-    private void SaveQuizData()
+    public void SaveQuizData()
     {
         string json = JsonConvert.SerializeObject(quiz, Formatting.Indented);
         string filePath = Application.persistentDataPath + "/quiz.json";
@@ -244,5 +244,20 @@ public class QuizCreator : MonoBehaviour
         }
         QuestionIndicator.text = "Q" + (questionIndex + 1);
         questionPanel.SetActive(true);
+    }
+    public void RemoveAnswer(int answerIndex)
+    {
+        if (currentQuestionIndex >= 0 && currentQuestionIndex < quiz.questions.Count)
+        {
+            if (answerIndex >= 0 && answerIndex < quiz.questions[currentQuestionIndex].answers.Count)
+            {
+                quiz.questions[currentQuestionIndex].answers.RemoveAt(answerIndex); // Remove the answer
+                SaveQuizData(); // Save the updated quiz data
+            }
+            else
+            {
+                Debug.LogWarning("Invalid answer index.");
+            }
+        }
     }
 }

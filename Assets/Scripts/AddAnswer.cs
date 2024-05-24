@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AddAnswer : MonoBehaviour
 {
 	public static AddAnswer Instance;
     [SerializeField] GameObject[] AnswerPanels;
-	int currentIndex = 0;
+    [SerializeField] TMP_InputField[] InputFields; 
+    int currentIndex = 0;
+    QuizCreator quizCreator;
 
 	private void Start()
 	{
+
 		if (Instance != null) 
 		{
 			Instance = this;
 		}
+        quizCreator = GetComponent<QuizCreator>();
 	}
     public void DisplayAnswerPanel()
     {
@@ -47,5 +52,12 @@ public class AddAnswer : MonoBehaviour
     public void HideAnswerPanel(GameObject panel)
     {
         panel.SetActive(false);
+        int index = System.Array.IndexOf(AnswerPanels, panel);
+        if (index != -1 && index < InputFields.Length)
+        {
+            InputFields[index].text = "";
+            quizCreator.RemoveAnswer(index);
+        }
+       
     }
 }

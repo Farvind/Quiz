@@ -911,7 +911,7 @@ GameObject:
   - component: {fileID: 1074917088}
   - component: {fileID: 1074917087}
   m_Layer: 5
-  m_Name: Question (1)
+  m_Name: Question Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1244,7 +1244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   QuestionText: {fileID: 1726730326}
-  resultText: {fileID: 0}
+  resultText: {fileID: 2135865336}
   QuestionIndexText: {fileID: 1074917087}
   AnswerTexts:
   - {fileID: 1003549891}
