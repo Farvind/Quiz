@@ -12,7 +12,6 @@ public class QuizManager : MonoBehaviour
     public TextMeshProUGUI QuestionIndexText;
     public TextMeshProUGUI[] AnswerTexts;
     public Button[] AnswerButtons;
-    public Button NextButton;
     public Button RestartButton;
 
     private Quiz quiz;
@@ -26,11 +25,7 @@ public class QuizManager : MonoBehaviour
     void Start()
     {
         LoadQuiz();
-        if (NextButton != null)
-        {
-            NextButton.onClick.AddListener(OnNextButtonClicked);
-            NextButton.gameObject.SetActive(false); // Initially hide the Next button
-        }
+       
 
         // Add listeners for answer buttons
         for (int i = 0; i < AnswerButtons.Length; i++)
@@ -93,7 +88,6 @@ public class QuizManager : MonoBehaviour
             }
         }
 
-        NextButton.gameObject.SetActive(false); // Hide Next button when displaying a new question
     }
 
     public void OnAnswerSelected(int answerIndex)
@@ -121,8 +115,7 @@ public class QuizManager : MonoBehaviour
             button.interactable = false;
         }
 
-        // Enable the Next button
-        NextButton.gameObject.SetActive(true);
+        OnNextButtonClicked();
     }
 
     void OnNextButtonClicked()
