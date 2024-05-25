@@ -17,15 +17,15 @@ public class QuizManager : MonoBehaviour
     private Quiz quiz;
     private int currentQuestionIndex = 0;
 
-    public string filePath = "quiz.json"; // Relative path to the JSON file
-    public int score;
+    private string filePath = "quiz.json"; // Relative path to the JSON file
+    int score;
+    int wrongAnswers; // Variable to count wrong answers
 
     public GameObject resultPannel;
 
     void Start()
     {
         LoadQuiz();
-       
 
         // Add listeners for answer buttons
         for (int i = 0; i < AnswerButtons.Length; i++)
@@ -36,7 +36,6 @@ public class QuizManager : MonoBehaviour
         if (RestartButton != null)
         {
             RestartButton.onClick.AddListener(RestartQuiz);
-           
         }
     }
 
@@ -87,7 +86,6 @@ public class QuizManager : MonoBehaviour
                 AnswerButtons[i].gameObject.SetActive(false);
             }
         }
-
     }
 
     public void OnAnswerSelected(int answerIndex)
@@ -107,6 +105,7 @@ public class QuizManager : MonoBehaviour
         else
         {
             Debug.Log("Wrong answer!");
+            wrongAnswers++; // Increase the wrong answer count
         }
 
         // Disable answer buttons after an answer is selected
@@ -136,8 +135,8 @@ public class QuizManager : MonoBehaviour
             resultPannel.SetActive(true);
             RestartButton.gameObject.SetActive(true);
 
-            resultText.text = $"You have {score} correct answers."; // Set the result text
-            Debug.Log("Quiz ends. Total score: " + score);
+            resultText.text = $"You have {score} correct answers and {wrongAnswers} wrong answers."; // Set the result text
+            Debug.Log($"Quiz ends. Total score: {score}. Total wrong answers: {wrongAnswers}");
         }
     }
 
@@ -145,6 +144,7 @@ public class QuizManager : MonoBehaviour
     {
         currentQuestionIndex = 0;
         score = 0;
+        wrongAnswers = 0; // Reset wrong answers
 
         // Hide the Restart button
         RestartButton.gameObject.SetActive(false);
