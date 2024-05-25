@@ -134,6 +134,8 @@ public class QuizManager : MonoBehaviour
         {
             // Quiz ends, display score or do something else
             resultPannel.SetActive(true);
+            RestartButton.gameObject.SetActive(true);
+
             resultText.text = $"You have {score} correct answers."; // Set the result text
             Debug.Log("Quiz ends. Total score: " + score);
         }
