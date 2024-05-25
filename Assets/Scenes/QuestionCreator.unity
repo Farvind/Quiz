@@ -352,7 +352,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 470370486}
         m_TargetAssemblyTypeName: AddAnswer, Assembly-CSharp
         m_MethodName: DisplayAnswerPanel
         m_Mode: 1
